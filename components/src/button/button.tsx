@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { MouseEventHandler } from "react";
+import { useFormStatus } from "react-dom";
 
 export const Button = ({
   type,
@@ -7,6 +10,7 @@ export const Button = ({
   target,
   label,
   icon = "right",
+  disabled = false,
   children,
 }: {
   type: "primary" | "secondary" | "sidebar" | "card" | "submit";
@@ -14,14 +18,18 @@ export const Button = ({
   target?: string | Function;
   label?: string;
   icon?: "left" | "right";
+  disabled?: boolean;
   children?: string;
 }) => {
+  const { pending } = useFormStatus();
+
   return (
     <div className="mt-4">
       {type === "submit" ? (
         <button
           type="submit"
-          className="inline-block bg-black py-3 pl-8 pr-3 text-sm font-bold text-white no-underline hover:text-white md:pl-8 md:pr-8 md:text-base"
+          disabled={pending || disabled}
+          className="inline-block bg-black py-3 pl-8 pr-3 text-sm font-bold text-white no-underline hover:text-white disabled:bg-slate-300 md:pl-8 md:pr-8 md:text-base"
         >
           {label}
           <span className="font-icon before:pr-4 after:relative after:top-0.5 after:inline-block after:leading-none after:content-['A']"></span>

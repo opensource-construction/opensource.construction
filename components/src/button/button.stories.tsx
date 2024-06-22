@@ -34,6 +34,21 @@ export const Primary: Story = {
   },
 };
 
+export const Submit: Story = {
+  args: {
+    type: "submit",
+    label: "Register now",
+  },
+};
+
+export const SubmitDisabled: Story = {
+  args: {
+    type: "submit",
+    disabled: true,
+    label: "Register now",
+  },
+};
+
 export const External: Story = {
   args: {
     target: "https://example.com",
